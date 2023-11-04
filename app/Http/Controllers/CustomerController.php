@@ -22,13 +22,15 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $req)
     {
         $customers = Customer::all();
         foreach($customers as $c) {
             $c->membership;
         };
-        return view('admin/customer', ['customers' => $customers]);
+        $userRole = $req->user()->role;
+        $userName = $req->user()->name;
+        return view('admin/customer', ['customers' => $customers, 'role' => $userRole, 'nama' => $userName]);
     }
 
     /**

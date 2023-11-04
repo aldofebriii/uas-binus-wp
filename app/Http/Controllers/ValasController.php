@@ -21,10 +21,12 @@ class ValasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $req)
     {
         $v = Valas::all();
-        return view('admin/valas', ['valas' => $v]);
+        $userRole = $req->user()->role;
+        $userName = $req->user()->name;
+        return view('admin/valas', ['valas' => $v, 'role' => $userRole, 'nama' => $userName]);
     }
 
     /**

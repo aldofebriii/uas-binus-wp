@@ -13,10 +13,12 @@ class MembershipController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $req)
     {
         $memberships = Membership::all();
-        return view('admin/membership', ['data' => $memberships]);
+        $userRole = $req->user()->role;
+        $userName = $req->user()->name;
+        return view('admin/membership', ['data' => $memberships, 'role' => $userRole, 'nama' => $userName]);
     }
 
     /**

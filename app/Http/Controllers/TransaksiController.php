@@ -25,7 +25,7 @@ class TransaksiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $req)
     {
         $transaksi = Transaksi::all();
         foreach($transaksi as $t) {
@@ -34,7 +34,9 @@ class TransaksiController extends Controller
         };
         $customer = Customer::all();
         $valas = Valas::whereDate('tanggal_rate', DB::raw('CURDATE()'))->get();
-        return view('superadmin/transaksi', ['data' => $transaksi, 'customer'=> $customer, 'valas' => $valas]);
+        $userRole = $req->user()->role;
+        $userName = $req->user()->name;
+        return view('superadmin/transaksi', ['data' => $transaksi, 'customer'=> $customer, 'valas' => $valas, 'role' => $userRole, 'nama' => $userName]);
     }
 
     /**

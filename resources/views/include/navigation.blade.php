@@ -44,6 +44,7 @@
         </div>
     </li>
 
+    @if($role === 1)
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
@@ -60,7 +61,7 @@
             </div>
         </div>
     </li>
-
+    @endif
     <!-- Divider -->
     <hr class="sidebar-divider">
 </ul>
